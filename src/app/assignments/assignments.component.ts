@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css']
 })
-export class AssignmentsComponent {
+export class AssignmentsComponent implements OnInit {
   titre="Liste des devoirs..";
+  // Champs du formulaire
+  nomDevoir="";
+  dateDeRendu?:Date;
+
   assignments = [
     {
       nom:"Devoir Angular de Mr Buffa",
@@ -24,4 +28,18 @@ export class AssignmentsComponent {
       rendu:true
     }
   ];
+
+  ngOnInit() {
+    /*
+    setTimeout(() => {
+      this.boutonActive = true;
+    }, 3000);
+    */
+  }
+
+  onSubmit() {
+    console.log(this.nomDevoir);
+    console.log(this.dateDeRendu);
+    return false;
+  }
 }
