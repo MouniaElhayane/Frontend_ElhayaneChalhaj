@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Assignment } from './assignment.model';
 
 @Component({
   selector: 'app-assignments',
@@ -7,24 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssignmentsComponent implements OnInit {
   titre="Liste des devoirs..";
-  // Champs du formulaire
-  nomDevoir="";
-  dateDeRendu?:Date;
+  formVisible = false;
 
-  assignments = [
+  // l'assignment qui a été cliqué
+  assignmentSelectionne?:Assignment;
+
+  assignments:Assignment[] = [
     {
       nom:"Devoir Angular de Mr Buffa",
-      dateDeRendu: "2022-12-31",
+      dateDeRendu: new Date("2022-12-31"),
       rendu:false
     },
     {
       nom:"Devoir JavaEE De Richar Grin",
-      dateDeRendu: "2023-01-20",
+      dateDeRendu: new Date("2023-01-20"),
       rendu:false
     },
     {
       nom:"Devoir gestion de projet de Mr Winter",
-      dateDeRendu: "2022-11-20",
+      dateDeRendu: new Date("2022-11-20"),
       rendu:true
     }
   ];
@@ -37,9 +39,12 @@ export class AssignmentsComponent implements OnInit {
     */
   }
 
-  onSubmit() {
-    console.log(this.nomDevoir);
-    console.log(this.dateDeRendu);
-    return false;
+  assignmentClique(a:Assignment) {
+    this.assignmentSelectionne = a;
+  }
+
+  ajouterAssignment(a:Assignment) {
+    this.assignments.push(a);
+    this.formVisible = false;
   }
 }
