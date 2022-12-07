@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 
 @Component({
@@ -10,33 +11,22 @@ export class AssignmentsComponent implements OnInit {
   titre="Liste des devoirs..";
   formVisible = false;
 
+  // injection du service, ne pas oublier private
+  constructor(private assignmentsService:AssignmentsService) { }
+
+  // tableau vide, on le remplira plus tard
+  assignments:Assignment[] = [];
+
   // l'assignment qui a été cliqué
   assignmentSelectionne?:Assignment;
 
-  assignments:Assignment[] = [
-    {
-      nom:"Devoir Angular de Mr Buffa",
-      dateDeRendu: new Date("2022-12-31"),
-      rendu:false
-    },
-    {
-      nom:"Devoir JavaEE De Richar Grin",
-      dateDeRendu: new Date("2023-01-20"),
-      rendu:false
-    },
-    {
-      nom:"Devoir gestion de projet de Mr Winter",
-      dateDeRendu: new Date("2022-11-20"),
-      rendu:true
-    }
-  ];
 
   ngOnInit() {
-    /*
-    setTimeout(() => {
-      this.boutonActive = true;
-    }, 3000);
-    */
+    // On va chercher les données
+    this.assignmentsService.getAssignments()
+    .subscribe(assignments => {
+      this.assignments = assignments;
+    });
   }
 
   assignmentClique(a:Assignment) {
@@ -44,7 +34,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   ajouterAssignment(a:Assignment) {
-    this.assignments.push(a);
+    //this.assignments.push(a);
     this.formVisible = false;
   }
 }

@@ -1,18 +1,24 @@
 <mat-card *ngIf="assignmentTransmis">
   <mat-card-content>
-    <img mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    alt="Photo of a Shiba Inu" width="100">
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"
+      width="100">
     <mat-card-header>
-    <mat-card-title>
-      {{assignmentTransmis.nom}}
-    </mat-card-title>
-    <mat-card-subtitle>
-      {{assignmentTransmis.dateDeRendu|date:'dd/MM/yyyy'}}
-    </mat-card-subtitle>
-  </mat-card-header>
+      <mat-card-title>
+        {{assignmentTransmis.nom}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{assignmentTransmis.dateDeRendu|date:'dd/MM/yyyy'}}
+      </mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-checkbox (click)="assignmentTransmis.rendu=true" *ngIf="!assignmentTransmis.rendu">Devoir Rendu</mat-checkbox>
-
+    <div id="bottom">
+      <mat-checkbox (click)="onAssignmentRendu()" *ngIf="!assignmentTransmis.rendu">Devoir Rendu</mat-checkbox>
+      <button mat-flat-button
+              color="warn"
+              (click)="onDelete()"
+      >
+         DELETE
+      </button>
+    </div>
   </mat-card-content>
 </mat-card>

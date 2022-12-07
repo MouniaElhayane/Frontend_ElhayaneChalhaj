@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -7,12 +8,13 @@ import { Assignment } from '../assignment.model';
   styleUrls: ['./add-assignment.component.css']
 })
 export class AddAssignmentComponent {
-  // nouvelAssignment est à la fois le nom de l'événement et l'émmetteur de l'événement
-  @Output() nouvelAssignment = new EventEmitter<Assignment>();
+  @Output() nouvelAssignment = new EventEmitter<Assignment>()
 
    // Champs du formulaire
    nomDevoir="";
    dateDeRendu?:Date;
+
+   constructor(private assignmentsService:AssignmentsService) {}
 
   onSubmit() {
     console.log(this.nomDevoir);
@@ -26,12 +28,15 @@ export class AddAssignmentComponent {
     assignment.dateDeRendu = this.dateDeRendu;
     assignment.rendu = false;
 
-    //this.assignments.push(assignment);
+    // on utilise le service de gestion des assignments
+    this.assignmentsService.addAssignment(assignment)
+    .subscribe(message => {
+      // on rentre ici que quand la donnée a été effectivement ajoutée
+      console.log(message);
 
-    // on envoie un événement (celui déclaré dans @Output)
-    // et on attache à l'événement l'assignement créé
-    this.nouvelAssignment.emit(assignment);
-
+      // On affiche la liste en envoyant un message au père
+      this.nouvelAssignment.emit(assignment);
+    });
     return false;
   }
 
