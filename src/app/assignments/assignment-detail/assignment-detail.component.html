@@ -1,3 +1,4 @@
+ICI DETAIL !!!!!
 <mat-card *ngIf="assignmentTransmis">
   <mat-card-content>
     <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"
@@ -13,11 +14,14 @@
 
     <div id="bottom">
       <mat-checkbox (click)="onAssignmentRendu()" *ngIf="!assignmentTransmis.rendu">Devoir Rendu</mat-checkbox>
-      <button mat-flat-button
-              color="warn"
-              (click)="onDelete()"
-      >
-         DELETE
+      <a routerLink="[/assignments/{{assignmentTransmis.id}}/edit">
+        <button mat-flat-button color="primary">
+          EDIT
+        </button>
+      </a>
+
+      <button mat-flat-button color="warn" (click)="onDelete()">
+        DELETE
       </button>
     </div>
   </mat-card-content>

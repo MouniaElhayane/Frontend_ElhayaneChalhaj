@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 
@@ -7,10 +8,26 @@ import { Assignment } from '../assignment.model';
   templateUrl: './assignment-detail.component.html',
   styleUrls: ['./assignment-detail.component.css']
 })
-export class AssignmentDetailComponent {
-  @Input() assignmentTransmis?:Assignment;
+export class AssignmentDetailComponent implements OnInit {
+  assignmentTransmis?:Assignment;
 
-  constructor(private assignmentsService:AssignmentsService) {}
+  constructor(private assignmentsService:AssignmentsService,
+              private route:ActivatedRoute,
+              private router:Router) {}
+
+  ngOnInit() {
+    // ici on va récupérer l'id depuis l'URL
+    // Pour manipuler l'URL on utilise un objet de type ActivatedRoute
+    // Le + permet de transformer une chaîne de caractères en nombre
+    const id:number = +this.route.snapshot.params['id'];
+
+    //console.log(id)
+
+    this.assignmentsService.getAssignment(id)
+    .subscribe(assignment => {
+      this.assignmentTransmis = assignment;
+    });
+  }
 
   onAssignmentRendu() {
     if(!this.assignmentTransmis) return;
@@ -21,6 +38,8 @@ export class AssignmentDetailComponent {
     this.assignmentsService.updateAssignment(this.assignmentTransmis)
     .subscribe(message => {
       console.log(message);
+      // ici on veut naviguer de nouveau vers la liste !!!
+      this.router.navigate(['/home']);
     });
   }
 

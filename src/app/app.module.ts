@@ -17,22 +17,43 @@ import { RenduDirective } from './shared/rendu.directive';
 import { FormsModule } from '@angular/forms';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
+import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { EditAssignmentComponent } from './assignments/edit-assignments/edit-assignment.component';
+
+const routes: Routes = [
+  { path: '', component: AssignmentsComponent },
+  { path: 'home', component: AssignmentsComponent },
+  { path: 'add', component: AddAssignmentComponent },
+  { path: 'assignments/:id', component: AssignmentDetailComponent },
+  { path: 'assignments/:id/edit', component: EditAssignmentComponent },
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     AssignmentsComponent,
     RenduDirective,
     AssignmentDetailComponent,
-    AddAssignmentComponent
+    AddAssignmentComponent,
+    EditAssignmentComponent,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, FormsModule,
-    MatButtonModule, MatDividerModule, MatIconModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatListModule, MatCardModule, MatCheckboxModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatListModule,
+    MatCardModule,
+    MatCheckboxModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

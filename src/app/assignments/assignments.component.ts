@@ -9,7 +9,6 @@ import { Assignment } from './assignment.model';
 })
 export class AssignmentsComponent implements OnInit {
   titre="Liste des devoirs..";
-  formVisible = false;
 
   // injection du service, ne pas oublier private
   constructor(private assignmentsService:AssignmentsService) { }
@@ -17,24 +16,11 @@ export class AssignmentsComponent implements OnInit {
   // tableau vide, on le remplira plus tard
   assignments:Assignment[] = [];
 
-  // l'assignment qui a été cliqué
-  assignmentSelectionne?:Assignment;
-
-
   ngOnInit() {
     // On va chercher les données
     this.assignmentsService.getAssignments()
     .subscribe(assignments => {
       this.assignments = assignments;
     });
-  }
-
-  assignmentClique(a:Assignment) {
-    this.assignmentSelectionne = a;
-  }
-
-  ajouterAssignment(a:Assignment) {
-    //this.assignments.push(a);
-    this.formVisible = false;
   }
 }
