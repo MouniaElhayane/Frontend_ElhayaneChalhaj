@@ -12,7 +12,8 @@ export class AssignmentsService {
 
   assignments:Assignment[] = [];
 
-  URI = "http://localhost:8010/api/assignments";
+  //URI = "http://localhost:8010/api/assignments";
+  URI = "https://rabatback.herokuapp.com/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
     //return of(this.assignments);
