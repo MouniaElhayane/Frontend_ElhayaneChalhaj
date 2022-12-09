@@ -10,7 +10,7 @@ import { Assignment } from '../assignment.model';
 })
 export class EditAssignmentComponent implements OnInit {
  assignment!: Assignment | undefined;
- 
+
  nomAssignment!: string;
  dateDeRendu!: Date;
 
@@ -45,8 +45,8 @@ export class EditAssignmentComponent implements OnInit {
     this.assignment.dateDeRendu = this.dateDeRendu;
     this.assignmentsService
       .updateAssignment(this.assignment)
-      .subscribe((message) => {
-        console.log(message);
+      .subscribe((reponseObj) => {
+        console.log(reponseObj.message);
 
         // navigation vers la home page
         this.router.navigate(['/home']);

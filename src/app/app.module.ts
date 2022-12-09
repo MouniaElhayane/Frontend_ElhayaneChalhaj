@@ -9,6 +9,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +22,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { EditAssignmentComponent } from './assignments/edit-assignments/edit-assignment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', component: AssignmentsComponent },
@@ -50,8 +53,11 @@ const routes: Routes = [
     MatNativeDateModule,
     MatListModule,
     MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
     MatCheckboxModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

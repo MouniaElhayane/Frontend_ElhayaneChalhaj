@@ -9,6 +9,94 @@
       </button>
     </a>
   </div>
+<!--
+  <p>Page courante : {{page}}, nb par page : {{limit}}</p>
+  <p>Nb assignments total : {{totalDocs}}, Nb pages total : {{totalPages}}</p>
+  <p>Nb assignments par page : 2
+      <input type="range"
+             min=2
+             max=20
+             value=10
+             [(ngModel)]="limit"
+             (change)="getAssignments()"
+      >
+             {{limit}}
+      </p>
+  <div>
+    <button mat-flat-button
+            color="primary"
+            (click)="onPremierePage()"
+    >
+       première
+    </button>
+
+    <button mat-flat-button
+            color="primary"
+            (click)="onPagePrecedente()"
+            [disabled]="!hasPrevPage"
+    >
+                Page précédente
+    </button>
+    <button mat-flat-button
+            color="primary"
+            (click)="onPageSuivante()"
+            [disabled]="!hasNextPage"
+    >
+       Page suivante
+    </button>
+    <button mat-flat-button
+            color="primary"
+            (click)="onDernierePage()"
+    >
+       Dernière
+    </button>
+  </div>
+-->
+
+
+  <table mat-table [dataSource]="assignments" >
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- nom Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef> Nom </th>
+      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+    </ng-container>
+
+    <!-- dateDeRendu Column -->
+    <ng-container matColumnDef="dateDeRendu">
+      <th mat-header-cell *matHeaderCellDef> Date de Rendu </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateDeRendu}} </td>
+    </ng-container>
+
+    <!-- rendu Column -->
+    <ng-container matColumnDef="rendu">
+      <th mat-header-cell *matHeaderCellDef> Rendu </th>
+      <td mat-cell *matCellDef="let element"> {{element.rendu}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [length]="totalPages"
+                 [pageSize]="limit"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 aria-label="Select page"
+                 (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+
+
+
+
 
   <mat-list *ngFor="let a of assignments">
     <h3 mat-subheader>{{a.dateDeRendu|date:'dd/MM/yyyy'}}</h3>

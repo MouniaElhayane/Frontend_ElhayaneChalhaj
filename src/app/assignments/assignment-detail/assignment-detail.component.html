@@ -14,7 +14,7 @@ ICI DETAIL !!!!!
 
     <div id="bottom">
       <mat-checkbox (click)="onAssignmentRendu()" *ngIf="!assignmentTransmis.rendu">Devoir Rendu</mat-checkbox>
-      <a routerLink="[/assignments/{{assignmentTransmis.id}}/edit">
+      <a routerLink="/assignments/{{assignmentTransmis.id}}/edit">
         <button mat-flat-button color="primary">
           EDIT
         </button>

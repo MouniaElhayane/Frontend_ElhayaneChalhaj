@@ -36,8 +36,8 @@ export class AssignmentDetailComponent implements OnInit {
 
     // et on demande au service de faire l'update
     this.assignmentsService.updateAssignment(this.assignmentTransmis)
-    .subscribe(message => {
-      console.log(message);
+    .subscribe(reponseObj => {
+      console.log(reponseObj.message);
       // ici on veut naviguer de nouveau vers la liste !!!
       this.router.navigate(['/home']);
     });
@@ -47,10 +47,12 @@ export class AssignmentDetailComponent implements OnInit {
     if(!this.assignmentTransmis) return;
 
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
-    .subscribe(message => {
-      console.log(message);
+    .subscribe(reponseObj => {
+      console.log(reponseObj.message);
       // pour supprimer l'affichage du composant de détail
       this.assignmentTransmis = undefined;
+      // On revient à la liste
+      this.router.navigate(['/home']);
     });
   }
 }

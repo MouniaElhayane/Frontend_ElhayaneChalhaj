@@ -31,9 +31,9 @@ export class AddAssignmentComponent {
 
     // on utilise le service de gestion des assignments
     this.assignmentsService.addAssignment(assignment)
-    .subscribe(message => {
+    .subscribe(responseObjet => {
       // on rentre ici que quand la donnée a été effectivement ajoutée
-      console.log(message);
+      console.log(responseObjet.message);
 
       // On affiche la liste en envoyant avec le router
       this.router.navigate(['/home']);
