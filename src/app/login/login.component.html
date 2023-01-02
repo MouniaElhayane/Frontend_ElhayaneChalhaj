@@ -1,0 +1,34 @@
+
+<div class="container" *ngIf="!currentUser.username">
+
+
+      <form class="login-form">
+        <table class=" login-table login-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="login-full-width">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+              </mat-form-field>
+            </td>
+          
+          <td><mat-form-field class="login-full-width">
+            <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+          </mat-form-field></td>
+          <td> 
+            <button mat-flat-button (click)="login()" >Connexion</button>
+
+          </td>
+        </tr></table>
+      </form>
+      </div>
+      <div class="container" *ngIf="currentUser.username">
+
+        <mat-card-actions>
+         <span>{{currentUser.name}}</span>   <button mat-flat-button (click)="logout()" color="default"> Déconnexion</button>
+
+        </mat-card-actions> 
+      </div>
+
+ 
+
+

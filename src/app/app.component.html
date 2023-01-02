@@ -1,10 +1,23 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a routerLink="/home"><span>{{titre}} </span></a>
+  
+    
+  
+      <app-login class="login"></app-login>
+
+   </mat-toolbar-row>
+</mat-toolbar>
+
 <h1>
   <nav>
-    <a routerLink="/home">{{titre}}</a>
+   
   </nav>
 </h1>
 <button mat-flat-button color="primary"
         (click)="peuplerBD()">Peupler BD</button>
-        
-<router-outlet></router-outlet>
+<div class="container-full">
+  <router-outlet></router-outlet>  
+</div>
+
 

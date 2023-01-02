@@ -1,0 +1,13 @@
+mat-toolbar-row a {
+    color :white;
+}
+.container-full{
+    margin-left: 50px;
+    padding: 20px;
+}
+.login {
+   
+        position: absolute;
+        right: 0%;   
+      
+}

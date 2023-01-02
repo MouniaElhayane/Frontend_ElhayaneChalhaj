@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable, of } from 'rxjs';
+import { forkJoin, Observable, of, Subject, tap } from 'rxjs';
 import { Assignment } from '../assignments/assignment.model';
 import { bdInitialAssignments } from './data';
 @Injectable({
@@ -11,19 +11,26 @@ export class AssignmentsService {
   constructor(private http:HttpClient) { }
 
   assignments:Assignment[] = [];
+  matiers = []
 
-  //URI = "http://localhost:8010/api/assignments";
-  URI = "https://rabatback.herokuapp.com/api/assignments";
+  URI = "http://localhost:8010/api/assignments";
+  URIMATIER = "http://localhost:8010/api/matieres";
+  //URI = "https://rabatback.herokuapp.com/api/assignments";
+  //URIMATIER = "https://rabatback.herokuapp.com/api/matieres";
 
   getAssignments():Observable<Assignment[]> {
     //return of(this.assignments);
     return this.http.get<Assignment[]>(this.URI);
   }
+  getMatier() {
+    //return of(this.assignments);
+    return this.http.get(this.URIMATIER).pipe(tap((res:any)=>{ this.matiers= res}));
+  }
 
-  getAssignmentsPagines(page:number, limit:number):Observable<any> {
+  getAssignmentsPagines(page:number, limit:number,filter:string):Observable<any> {
     //return of(this.assignments);
 
-    return this.http.get<Assignment[]>(`${this.URI}?page=${page}&limit=${limit}`);
+    return this.http.get<Assignment[]>(`${this.URI}?page=${page}&limit=${limit}&filter=${filter}`);
   }
 
   getAssignment(id:number):Observable<Assignment|undefined> {

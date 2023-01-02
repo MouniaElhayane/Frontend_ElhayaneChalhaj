@@ -1,6 +1,12 @@
 table {
   width: 100%;
 }
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -8,6 +14,7 @@ table {
 
 .ajouterBtn {
   align-self: flex-end;
+  margin-top: 5px;
 }
 
 .rendu {
@@ -18,4 +25,17 @@ table {
 .nonRendu {
   color: red;
   border: 2px dashed red
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
 }
